@@ -1,6 +1,6 @@
 // 1. Importar el modulo global http //
 const http = require('http');
-
+const fs = require('fs');
 // Crea el servidor web -> manera 1 //
 /* function requestListener(req, res){
     Es mejor pasar como funcion anonima.
@@ -14,6 +14,7 @@ const server = http.createServer((req, res)=>{
     
 console.log(req.url , req.method, req.headers);
 const url = req.url;
+const method = req.method;
   /*process.exit(); cerrar o salir del ciclo continuo */
 
   //routing
@@ -26,6 +27,13 @@ const url = req.url;
   return res.end();
   }
 
+  if (url=== '/message' && method === 'POST'){
+    fs.writeFileSync('message.txt' , 'duuuuuuuuuuuuu');
+    res.statusCode = 302;
+    res.setHeader('Location' , '/');
+    return res.end();
+
+  }
 
 
   // enviando respuestas: 
